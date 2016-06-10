@@ -1,0 +1,12 @@
+{
+"name":"Wikitube",
+"description":"Wikitube",
+"version":"1",
+"manifest_version":2,
+"content_scripts": [
+    {
+      "matches": ["https://en.wikipedia.org/wiki/*"],
+      "js": ["myscript.js"]
+    }
+  ]
+}
