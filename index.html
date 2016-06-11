@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> RestApi Movie watch list</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="bootstrap.min.js"></script>
+  <style type="text/css">
+  .container{
+    margin-top: 20px;
+    border-width: 10px ;
+    border-color: #d3d3d3;
+  }
+  </style>
+</head>
+<body>
+<div class="container" id="container">
+<form name="form">
+  <fieldset class="form-group">
+    <label for="exampleInputEmail1">Enter Url</label>
+    <input class="form-control" id="url" type="text"  name="movie_name" placeholder="Enter Url">
+  </fieldset>
+  <div class="radio">
+    <label for="method">Choose Method :</label>
+    <label>
+      <input type="radio" name="method" id="optionsRadios1" value="GET" checked>GET
+    </label>
+    <label> 
+      <input type="radio" name="method" id="optionsRadios2" value="POST">POST
+    </label>
+     <label>
+      <input type="radio" name="method" id="optionsRadios3" value="PUT" >PUT
+    </label>
+     <label>
+      <input type="radio" name="method" id="optionsRadios3" value="DELETE" >DELETE
+    </label>
+  </div>
+ <fieldset class="form-group">
+    <label for="exampleTextarea">Headers</label>
+    <div id="header-info">
+        <div id="header0">
+          <input type="text" name="key" placeholder="Key">
+          <input type="text" name="key" placeholder="Value">
+          <i class="fa fa-close" onclick='removeHeader("header0")' style="display:none;"></i>
+          <i class="fa fa-plus-square" onclick="addHeader()" ></i>
+        </div>
+      </div>
+      <br/>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleTextarea">BODY</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </fieldset>
+  
+  <button type="submit" class="btn btn-primary" onclick="hitOmdbApi(form.movie_name.value)">Submit</button>
+</form>
+</div>
+<div id = "movie_detail"></div>
+    <div id = "error_detail"></div>
+
+<script src="movie_watch_list.js"></script>
+</body>
+</html>
+
+
+
