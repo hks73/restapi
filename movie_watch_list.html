@@ -2,12 +2,31 @@
 <html>
 <head>
 	<title>Movie Watch List</title>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div id = "container">
 		<form name="form">
-			<label>Enter Movie Name:</label>
-			<input type="text" name="movie_name"/>
+			<label for="url">Enter Url : </label>
+			<input id="url" type="text" name="movie_name"/>
+			</br>
+			<label for="method">Choose Method : </label>
+			<input type="radio" name="method" value="GET" checked/>GET
+			<input type="radio" name="method" value="POST"/>POST
+			<input type="radio" name="method" value="PUT"/>PUT
+			<input type="radio" name="method" value="DELETE"/>DELETE
+			<br/>
+			<label for="header">Headers : </label>
+			<div id="header-info">
+				<div id="header0">
+					<input type="text" name="key" placeholder="Key"><input type="text" name="key" placeholder="Value"><i class="fa fa-close" onclick='removeHeader("header0")' style="display:none;"></i><i class="fa fa-plus-square" onclick="addHeader()" ></i>
+				</div>
+			</div>
+			<br/>
+			<label for="body">Body : </label>
+			<br/>
+			<textarea id="body" name="body" rows="10" cols="30"></textarea>
+			<br/>
 			<input type="submit" value="Submit" onclick="hitOmdbApi(form.movie_name.value)">
 		</form>
 		<div id = "movie_detail"></div>

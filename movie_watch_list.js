@@ -1,5 +1,6 @@
 const BASE_URL = "http://www.omdbapi.com"
 const REPONSE_FORMAT_QUERY_PARAMETER = "&r=json"
+var incr = 1;
 var xhr;
 function hitOmdbApi(movieName){
 	findMovieByName(movieName);
@@ -34,4 +35,31 @@ function showTheMovieDetails(responseBody){
 function showTheErrorMessage(errorMsg){
 	error = '<p>' + errorMsg + '</p>';
 	document.getElementById("error_detail").innerHTML = error;	
+}
+
+function addHeader() {
+	headerInfoElement = document.getElementById("header-info");
+	headerInfoElement.lastElementChild.lastElementChild.previousElementSibling.style.display="inline";
+	headerInfoElement.lastElementChild.lastElementChild.style.display="none";
+	var node = document.createElement("DIV");
+	var id = "header"+incr;
+	node.setAttribute("id",id);
+	inputField = '<input type="text" name="key" placeholder="Key">'+
+					'<input type="text" name="key" placeholder="Value">'+
+					'<i class="fa fa-close" onclick="removeHeader('+
+					"'"+id +"'"+
+					')" style="display:none;"></i>'+
+					'<i class="fa fa-plus-square" onclick="addHeader()" ></i>';
+	node.innerHTML = inputField;
+	incr++;
+	headerInfoElement.appendChild(node);
+}
+
+function removeHeader(elementID){
+	if(document.getElementById(elementID)){
+		console.log(elementID);
+		child = document.getElementById(elementID);
+		parent = document.getElementById("header-info");
+		parent.removeChild(child);
+	}
 }
