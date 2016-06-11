@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Watch List</title>
+</head>
+<body>
+	<div id = "container">
+		<form name="form">
+			<label>Enter Movie Name:</label>
+			<input type="text" name="movie_name"/>
+			<input type="submit" value="Submit" onclick="hitOmdbApi(form.movie_name.value)">
+		</form>
+		<div id = "movie_detail"></div>
+		<div id = "error_detail"></div>
+	</div>
+	<script src="movie_watch_list.js"></script>
+</body>
+</html>
+
