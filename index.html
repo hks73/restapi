@@ -18,8 +18,8 @@
 <div class="container" id="container">
 <form name="form">
   <fieldset class="form-group">
-    <label for="exampleInputEmail1">Enter Url</label>
-    <input class="form-control" id="url" type="text"  name="movie_name" placeholder="Enter Url">
+    <label for="url">Enter Url</label>
+    <input class="form-control" id="url" type="text"  name="url" placeholder="Enter Url">
   </fieldset>
   <div class="radio">
     <label for="method">Choose Method :</label>
@@ -45,19 +45,19 @@
           <i class="fa fa-close" onclick='removeHeader("header0")' style="display:none;"></i>
           <i class="fa fa-plus-square" onclick="addHeader()" ></i>
         </div>
-      </div>
+    </div>
       <br/>
   </fieldset>
   <fieldset class="form-group">
     <label for="exampleTextarea">BODY</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    <textarea class="form-control" id="exampleTextarea" name="body" rows="3"></textarea>
   </fieldset>
   
-  <button type="submit" class="btn btn-primary" onclick="hitOmdbApi(form.movie_name.value)">Submit</button>
+  <button type="button" class="btn btn-primary" onclick="hitApi(form.url.value,form.method.value,form.body.value)">Submit</button>
 </form>
 </div>
-<div id = "movie_detail"></div>
-    <div id = "error_detail"></div>
+<div id = "response_status" class="container"></div>
+  <div id = "response_body"></div>
 
 <script src="movie_watch_list.js"></script>
 </body>

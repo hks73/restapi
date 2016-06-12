@@ -1,40 +1,45 @@
-const BASE_URL = "http://www.omdbapi.com"
-const REPONSE_FORMAT_QUERY_PARAMETER = "&r=json"
 var incr = 1;
-var xhr;
-function hitOmdbApi(movieName){
-	findMovieByName(movieName);
-}
 
-//http://www.omdbapi.com/?t=&y=2013&plot=short&r=json
-function findMovieByName(movieName){
+function hitApi(url,method,body){
 	xhr = new XMLHttpRequest();
-	xhr.open('POST',BASE_URL+"?t="+movieName+REPONSE_FORMAT_QUERY_PARAMETER,false);
-	xhr.send();
-	if(xhr.status==200){
-		responseBody = JSON.parse(xhr.responseText)
-		if(responseBody.hasOwnProperty('Response')){
-			if(responseBody.Response == "True"){
-				showTheMovieDetails(responseBody);
+	if(url.length!=0){
+		xhr.open(method,url,true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+		    	showTheResponseStatus(xhr.status);
+				showTheResponseBody(xhr.responseText);	
 			}
-			else{
-				showTheErrorMessage(responseBody.Error);
+		};
+		// getHeaderList(xhr);
+
+		headerInfo = document.getElementById("header-info").childNodes;
+		for(i=0;i<headerInfo.length;i++){
+			if(headerInfo[i].nodeType == 1) 
+			{ //elemen node
+				key=headerInfo[i].firstElementChild.value;
+				value=headerInfo[i].firstElementChild.nextElementSibling.value;
+				if(key.length!=0 || value.length!=0){
+					xhr.setRequestHeader(key,value);
+				}
 			}
 		}
+		if(body.length==0){
+			xhr.send();
+		}else{
+			xhr.send(body);
+		}
+	}else{
+		showTheResponseBody("Enter url");
 	}
 }
 
-function showTheMovieDetails(responseBody){
-	var movieDetails = '<p> Title : ' + responseBody.Title +
-    					'Year : ' + responseBody.Year +
-    					'Rating : ' + responseBody.Rated +
-    	     			'</p>';
-    document.getElementById("movie_detail").innerHTML = movieDetails;
+
+function showTheResponseBody(responseBody){
+    document.getElementById("response_body").innerHTML = responseBody;
 }
 
-function showTheErrorMessage(errorMsg){
-	error = '<p>' + errorMsg + '</p>';
-	document.getElementById("error_detail").innerHTML = error;	
+function showTheResponseStatus(responseStatus){
+	document.getElementById("response_status").innerHTML = responseStatus;	
 }
 
 function addHeader() {
