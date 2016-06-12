@@ -7,6 +7,7 @@ function hitApi(url,method,body){
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
 		    	showTheResponseStatus(xhr.status);
+		    	console.log("harsh");
 				showTheResponseBody(xhr.responseText);	
 			}
 		};

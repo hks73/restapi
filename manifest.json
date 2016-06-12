@@ -1,13 +1,21 @@
 {
-"name":"Wikitube",
-"description":"Wikitube",
-"version":"1",
-"manifest_version":2,
+  "name": "restapi",
+  "version": "1",
+  "manifest_version":2,
+  "description": "__rest_description__",
+  "icons": {
+    "16": "icon_16.png",
+    "32": "icon_32.png",
+    "48": "icon_48.png",
+    "128": "icon_128.png"
+  },
 
-"content_scripts": [
-    {
-      "matches": ["https://en.wikipedia.org/wiki/*"],
-      "js": ["myscript.js"]
-    }
-  ]
+  "browser_action": {
+    "default_icon": "icon_16.png",
+    "default_title": "__rest_name__"
+  },
+
+  "options_page": "index.html",
+  "background": "background.html",
+  "permissions": ["tabs", "http://*/*", "https://*/*"]
 }
